@@ -1,3 +1,6 @@
 {
-  "item.trackandtriumph.custom_stick": "Custom Stick"
+  "item.trackandtriumph.ak47": "AK-47",
+  "item.trackandtriumph.bullet_762": ".762 Bullet",
+
+  "entity.trackandtriumph.bullet_762": ".762 Bullet"
 }

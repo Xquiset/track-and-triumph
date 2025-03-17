@@ -1,6 +1,9 @@
 package com.samleighton.trackandtriumph;
 
+import com.samleighton.trackandtriumph.entities.TTEntities;
+import com.samleighton.trackandtriumph.entities.projectiles.client.BulletRenderer;
 import com.samleighton.trackandtriumph.items.TTItems;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -23,8 +26,8 @@ import net.neoforged.neoforge.event.server.ServerStartingEvent;
 @Mod(TrackandTriumph.MODID)
 public class TrackandTriumph
 {
-    // Define mod id in a common place for everything to reference
     public static final String MODID = "trackandtriumph";
+    // Define mod id in a common place for everything to reference
     // Directly reference a slf4j logger
     private static final Logger LOGGER = LogUtils.getLogger();
 
@@ -36,6 +39,7 @@ public class TrackandTriumph
 
         // Register our custom items with the deferred register
         TTItems.register(modEventBus);
+        TTEntities.register(modEventBus);
 
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (TrackandTriumph) to respond directly to events.
@@ -53,8 +57,9 @@ public class TrackandTriumph
     }
 
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
-        if(event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES){
-            event.accept(TTItems.CUSTOM_STICK);
+        if(event.getTabKey() == CreativeModeTabs.COMBAT){
+            event.accept(TTItems.AK47);
+            event.accept(TTItems.BULLET);
         }
     }
 
@@ -69,7 +74,7 @@ public class TrackandTriumph
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-
+            EntityRenderers.register(TTEntities.BULLET.get(), BulletRenderer::new);
         }
     }
 }

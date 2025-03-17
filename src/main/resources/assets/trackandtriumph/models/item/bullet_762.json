@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "trackandtriumph:item/custom_stick"
+    "layer0": "trackandtriumph:item/bullet_762"
   }
 }
